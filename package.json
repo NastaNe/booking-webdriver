@@ -5,7 +5,7 @@
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:NastaNe/webdriver-booking.git"
+    "url": "git@github.com:NastaNe/booking-webdriver.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js"
