@@ -1,0 +1,23 @@
+{
+  "name": "booking-webdriverio",
+  "version": "0.0.1",
+  "description": "Booking tests with Mocha and Webdriverio",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:NastaNe/webdriver-booking.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/wdio wdio.conf.js"
+  },
+  "dependencies": {
+    "parallel-mocha": "*",
+    "mocha": "*",
+    "chai": "*",
+    "wdio-sauce-service": "*"
+  },
+  "devDependencies": {
+    "wdio-mocha-framework": "^0.5.11",
+    "webdriverio": "^4.8.0"
+  }
+}
