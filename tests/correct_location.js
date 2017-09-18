@@ -13,36 +13,36 @@ describe('Correct Location', function () {
 
     var city = "New York";
     var month = "December";
-    var checkin = new Date(2017, 12, 10);
-    var checkout = new Date(2017, 12, 15);
+    var checkin = new Date(1512864000000);
+    var checkout = new Date(1513296000000);
 
-    before(function() {
-        homePage = new HomePage();
-    });
+    homePage = new HomePage();
     it('should search for' + {city}, function () {
         homePage.open();
         homePage.searchCity(city);
         expect(homePage.search_destination.getValue()).to.contain(city);
     });
     it('should search for concrete dates:', function () {
-        homePage.open();
         // date to unix timestamp for data-id
         homePage.search(month, checkin.getTime(), checkout.getTime());
-        expect(homePage.checkin.getValue()).to.contain(month);
-        expect(homePage.checkin.getValue()).to.contain(checkin.getDate());
-        expect(homePage.checkout.getValue()).to.contain(month);
-        expect(homePage.checkout.getValue()).to.contain(checkout.getDate());
+        // expect(homePage.checkin.getText()).to.contain(month);
+        // expect(homePage.checkin.getText()).to.contain(checkin.getDate());
+        // expect(homePage.checkout.getText()).to.contain(month);
+        // expect(homePage.checkout.getText()).to.contain(checkout.getDate());
+        homePage.submit.click();
     });
 
     resultPage = new ResultPage();
 
-    let hotelsOnPages = resultPage.hotels.value.length;
-    hotelsOnPages.forEach(function(d) {
-        it('should contain name of city -' + {city}, function () {
-            resultPage.open();
-            resultPage.getCoordinate(d).waitForExist(200);
-            expect(resultPage.getCoordinate(d).getValue).to.contain(city);
+    var hotelsOnPages = 50;
+    // browser.elements('.//*[@data-hotelid]', function(err,res) {
+    //     hotelsOnPages = res.value.length;
+    // });
+    it('should contain name of city -' + city, function () {
+        for (let i = 1; i < hotelsOnPages; i +=2) {
+            expect(resultPage.getCoordinate(i).isVisible()).to.equal(true);
+            expect(resultPage.getCoordinate(i).getText()).to.contain(city);
+        }
 
-        });
     });
 });

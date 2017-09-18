@@ -4,14 +4,16 @@
 "use strict";
 var Page = require('./page');
 class ResultPage extends Page {
-    get hotels()  { return browser.element('[data-hotelid]'); }
+    get hotels()  { return browser.element('.//*[@data-hotelid]'); }
 
     open() {
         super.open('');
     }
 
     getCoordinate(index){
-        return browser.element('[data-coords](' + {index} +')');
+        browser.element('(.//*[@data-coords])[' + index +']').waitForExist(2000);
+        // browser.moveToObject('(.//*[@data-coords])[' + index +']');
+        return browser.element('(.//*[@data-coords])[' + index +']');
     }
 
 }
